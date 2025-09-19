@@ -1,0 +1,10 @@
+.right {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.line {
+    border: solid 1px black;
+    padding: 22px;
+    margin: 2px;
+}

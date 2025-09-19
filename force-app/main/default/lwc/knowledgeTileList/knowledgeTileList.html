@@ -1,0 +1,17 @@
+<template>
+    <lightning-layout multiple-rows>
+        <template if:true={articles}>
+            <template for:each={articles} for:item="article">
+                <lightning-layout-item key={article.Id} size="4" padding="around-small">
+                    <div class="tile" onclick={handleTileClick} data-id={article.Id}>
+                        <h3>{article.Title}</h3>
+                        <p>{article.Summary}</p>
+                    </div>
+                </lightning-layout-item>
+            </template>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-layout>
+</template>

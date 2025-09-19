@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="グローバル検索結果" icon-name="custom:custom68">
+        <div class="right slds-m-around_medium">
+            <template for:each={data} for:item="item">
+                <div class="line" key={item.Id}>
+                    <a onclick={tileClick}>
+                        <div class="title">{item.Title}</div>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

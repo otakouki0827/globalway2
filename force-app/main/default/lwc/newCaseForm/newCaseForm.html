@@ -1,0 +1,95 @@
+<template>
+    <div lwc:if={createFlag}>
+        <div class="new-case-form-container">
+            <div class="static-item">
+                <!-- 各項目 -->
+                <div class="item">
+                    <div>お問い合わせ件名<span>※</span></div>
+                    <lightning-input label="" placeholder="お問い合わせ件名を入力してください。" name="Subject" value={subject}
+                        onchange={handleSubjectInputChange} onkeydown={handleKeyDown}
+                        class="no-top-gap"></lightning-input>
+                </div>
+
+                <div class="item">
+                    <div>お問い合わせ詳細<span>※</span></div>
+                    <lightning-textarea label="" placeholder="お問い合わせの詳細を入力してください。" name="Description"
+                        value={description} onchange={handleDescriptionInputChange}
+                        onkeydown={handleKeyDown}></lightning-textarea>
+
+                </div>
+
+                <div lwc:if={priorityOptions.data} class="item">
+                    <div>優先度<span>※</span></div>
+                    <lightning-combobox label="" options={priorityOptions.data.values}></lightning-combobox>
+                </div>
+
+                <!--メール通知先のUI検証-->
+                <!--lightning-dual-listbox-->
+                <div lwc:if={selectList} class="item">
+                    <div>メール通知先<span>選択したアドレス先へCcで通知いたします。</span></div>
+                    <lightning-dual-listbox label="" options={selectList} source-label="選択可能" selected-label="選択済み"
+                        size="2" onchange={handleChange}></lightning-dual-listbox>
+                </div>
+                <br>
+                <br>
+                <!--lightning-combobox　＋　ボタン-->
+                <div lwc:if={selectList} class="item">
+                    <div>メール通知先<span>選択したアドレス先へCcで通知いたします。</span></div>
+                    <lightning-combobox label="" options={selectList}
+                        placeholder="メールアドレスを選択してください。"></lightning-combobox>
+                    <lightning-button onclick={handleClick}>通知先を追加する</lightning-button>
+                    <p>Selected value is: </p>
+                </div>
+                <br>
+                <br>
+                <!--lightning-checkbox-group + スクロール-->
+                <div lwc:if={selectList} class="item">
+                    <div>メール通知先<span>選択したアドレス先へCcで通知いたします。</span></div><lightning-helptext
+                        content="ここにはCCアドレスを選択します。"></lightning-helptext>
+                    <div class="scroll-container">
+                        <lightning-checkbox-group label="" name="Checkbox Group" options={selectList}
+                            value={selectedValue} onchange={handleChange}></lightning-checkbox-group>
+                    </div>
+                    <p>Selected value is: {selectedValuesDisplay}</p>
+                </div>
+                <br>
+                <br>
+
+            </div>
+
+
+            <div class="logic-item">
+                <!-- ファイルを添付する -->
+                <div class="input slds-m-horizontal_large">
+                    <lightning-file-upload label="ファイルを添付" name="fileUploader" multiple disabled={isDisabled}
+                        onuploadfinished={handleUploadFinished}>
+                    </lightning-file-upload>
+                </div>
+
+                <!-- アップしたファイル名 -->
+                <template if:true={filenames}>
+                    <template for:each={filenames} for:item="file" for:index="index">
+                        <div key={file}
+                            class="slds-m-horizontal_large slds-text-title_bold slds-grid slds-grid_align-spread">
+                            <span>{file}</span>
+                            <lightning-button-icon icon-name="utility:close" alternative-text="削除"
+                                onclick={handleRemoveFile} data-index={index} variant="bare"
+                                class="slds-m-left_x-small">
+                            </lightning-button-icon>
+                        </div>
+                    </template>
+                </template>
+            </div>
+            <!-- 登録ボタン -->
+            <div class="action-block">
+                <a class="create-button" onclick={handleSubmit}>登録する</a>
+            </div>
+        </div>
+    </div>
+    <div lwc:elseif={confirmFlag}>
+
+    </div>
+    <div lwc:elseif={completeFlag}>
+
+    </div>
+</template>

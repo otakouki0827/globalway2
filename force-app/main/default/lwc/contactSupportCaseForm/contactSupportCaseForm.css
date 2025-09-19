@@ -1,0 +1,340 @@
+/*レイアウト*/
+.new-case-form-container,
+.complete-case-form-container,
+.confirm-case-form-container {
+    padding: 2rem 4rem 6.25rem 0;
+}
+
+.new-case-form-container .item {
+    padding: 1rem 0;
+}
+
+/*各ステップのパス*/
+.new-case-form-container .phase .phase-container,
+.complete-case-form-container .phase .phase-container,
+.confirm-case-form-container .phase .phase-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+.new-case-form-container .phase .phase-container .on,
+.complete-case-form-container .phase .phase-container .on,
+.confirm-case-form-container .phase .phase-container .on {
+    width: 200px;
+    padding: 14px;
+    background-color: rgb(228, 113, 34);
+}
+
+.new-case-form-container .phase .phase-container .on .text,
+.complete-case-form-container .phase .phase-container .on .text,
+.confirm-case-form-container .phase .phase-container .on .text {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.new-case-form-container .phase .phase-container .not-yet,
+.confirm-case-form-container .phase .phase-container .not-yet,
+.complete-case-form-container .phase .phase-container .not-yet {
+    width: 200px;
+    padding: 14px;
+    background-color: rgb(216, 163, 127);
+}
+
+.new-case-form-container .phase .phase-container .not-yet .text,
+.confirm-case-form-container .phase .phase-container .not-yet .text,
+.complete-case-form-container .phase .phase-container .not-yet .text {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.new-case-form-container .phase .phase-container .arrow-wrap,
+.confirm-case-form-container .phase .phase-container .arrow-wrap,
+.complete-case-form-container .phase .phase-container .arrow-wrap {
+    padding: 0 14px;
+}
+
+.new-case-form-container .phase .phase-container .arrow-wrap .arrow,
+.confirm-case-form-container .phase .phase-container .arrow-wrap .arrow,
+.complete-case-form-container .phase .phase-container .arrow-wrap .arrow {
+    font-size: 1.25rem;
+
+}
+
+/*➀入力画面*/
+.new-case-form-container .item p {
+    font-size: 1rem;
+}
+
+.new-case-form-container .red {
+    color: rgb(255, 1, 1);
+    font-size: 1rem;
+}
+
+.new-case-form-container .custom-label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.new-case-form-container .file-label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/*お問い合わせ詳細*/
+.new-case-form-container .custom-textarea {
+    --sds-c-textarea-sizing-min-height: 200px;
+}
+
+/*優先度項目*/
+.new-case-form-container .priority-container {
+    width: 33%;
+}
+
+/*解決期限項目*/
+.new-case-form-container .resolution-limit-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-case-form-container .resolution-limit-item-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+}
+
+.new-case-form-container .resolution-limit-item-container div {
+    font-size: 14px;
+    width: 40px;
+
+}
+
+.new-case-form-container .resolution-limit-item-container .time {
+    margin-left: 1rem;
+
+}
+
+.new-case-form-container .resolution-limit-item-container lightning-input {
+    padding: 0 0 0 1rem;
+    width: 100%;
+}
+
+/*添付ファイル名項目*/
+.new-case-form-container .logic-item .item .file-names {
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 8px 0;
+}
+
+/*「登録する」ボタン*/
+.new-case-form-container .action-block {
+    text-align: center;
+
+}
+
+.new-case-form-container .create-button {
+    display: inline-block;
+    width: 33%;
+    margin-bottom: 16px;
+}
+
+.new-case-form-container .action-block .container {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background-color: rgb(228, 113, 34);
+    border-radius: 24px;
+    padding: 14px;
+}
+
+.new-case-form-container .action-block .container:active {
+    background-color: darkorange;
+    color: white;
+}
+
+.new-case-form-container .action-block .arrow {
+    color: white;
+    position: absolute;
+}
+
+.new-case-form-container .action-block .text {
+    color: white;
+    margin: 0 auto;
+}
+
+/*➁確認画面*/
+.confirm-case-form-container .item p {
+    font-size: 1.125rem;
+    text-align: center;
+    padding: 0 0 3rem 0;
+}
+
+.confirm-case-form-container .container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 0;
+    border-top: 1px solid rgb(212, 212, 212);
+}
+
+.confirm-case-form-container .container .label {
+    font-size: 1rem;
+    font-weight: bold;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.confirm-case-form-container .container .text {
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+/*確認画面のボタン*/
+.confirm-case-form-container .action-block {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(212, 212, 212);
+    padding: 3rem 0;
+    justify-content: space-around;
+}
+
+.confirm-case-form-container .confirm-button,
+.confirm-case-form-container .back-button {
+    display: inline-block;
+    margin: 16px 0;
+    width: 200px;
+}
+
+/*確定ボタン*/
+.confirm-case-form-container .action-block .confirm-button .container {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background-color: rgb(228, 113, 34);
+    border-radius: 24px;
+    padding: 14px;
+}
+
+.confirm-case-form-container .action-block .confirm-button .container:active {
+    background-color: darkorange;
+    color: white;
+}
+
+.confirm-case-form-container .action-block .confirm-button .container .arrow {
+
+    color: white;
+    position: absolute;
+
+}
+
+.confirm-case-form-container .action-block .confirm-button .container .text {
+
+    color: white;
+    text-align: center;
+}
+
+/*戻るボタン*/
+.confirm-case-form-container .action-block .back-button .container {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background-color: rgb(215, 209, 205);
+    border-radius: 24px;
+    padding: 14px;
+}
+
+.confirm-case-form-container .action-block .back-button .container:active {
+    background-color: rgb(189, 180, 174);
+    color: rgb(0, 0, 0);
+}
+
+.confirm-case-form-container .action-block .back-button .container .arrow {
+
+    color: rgb(0, 0, 0);
+    position: absolute;
+
+}
+
+.confirm-case-form-container .action-block .back-button .container .text {
+
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+
+
+/*➂完了画面*/
+.complete-case-form-container .item .item-p {
+    font-size: 1.125rem;
+    text-align: center;
+    padding: 0 0 3rem 0;
+}
+
+.complete-case-form-container .container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 0;
+    border-top: 1px solid rgb(212, 212, 212);
+}
+
+.complete-case-form-container .container .label {
+    font-size: 1rem;
+    font-weight: bold;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.complete-case-form-container .container .text {
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+/*完了画面のボタン*/
+.complete-case-form-container .action-block {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(212, 212, 212);
+    padding: 3rem 0;
+    justify-content: space-around;
+}
+
+.complete-case-form-container .list-button {
+    display: inline-block;
+    margin: 16px 0;
+    width: 200px;
+}
+
+/*一覧へ戻るボタン*/
+.complete-case-form-container .action-block .list-button .container {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background-color: rgb(228, 113, 34);
+    border-radius: 24px;
+    padding: 14px;
+}
+
+.complete-case-form-container .action-block .list-button .container:active {
+    background-color: darkorange;
+    color: white;
+}
+
+.complete-case-form-container .action-block .list-button .container .arrow {
+
+    color: white;
+    position: absolute;
+
+}
+
+.complete-case-form-container .action-block .list-button .container .text {
+
+    color: white;
+    text-align: center;
+}

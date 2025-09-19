@@ -1,0 +1,16 @@
+.new-case-form-container {
+    padding: 2rem 4rem 6.25rem 0;
+}
+
+.new-case-form-container .no-top-gap {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.new-case-form-container .scroll-container {
+    max-height: 5.5rem;
+    overflow-y: auto;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+    border: solid 1px rgb(212, 212, 212);
+}

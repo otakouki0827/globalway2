@@ -1,0 +1,55 @@
+<template>
+    <template if:false={isComplete}>
+        <template if:true={caseTemp}>
+            <div><strong>★確認★＞＞完了</strong></div>
+            <div><strong>ID：</strong>{caseTemp.Id}</div>
+            <div><strong>件名：</strong>{caseTemp.Subject__c}</div>
+            <div><strong>詳細：</strong>{caseTemp.Description__c}</div>
+            <div><strong>優先度：</strong>{caseTemp.Priority__c}</div>
+            <div><strong>メールCC：</strong>{caseTemp.EmailCC__c}</div>
+            <div><strong>解決期限：</strong>{caseTemp.ResolveLimit__c}</div>
+            <div><strong>ファイル：</strong>{caseTemp.AttachmentId__c}</div>
+            <div>
+                <lightning-button class="slds-button custombtn" type="submit" name="submit" onclick={handleDone}
+                    label="確定"></lightning-button>
+            </div>
+        </template>
+
+        <template if:false={caseTemp}>
+            <p>データを読み込んでいます...</p>
+        </template>
+    </template>
+    <template if:true={isComplete}>
+
+        <div><strong>確認＞＞★完了★</strong></div>
+        <div><strong>ID：</strong>{caseTarget.Id}</div>
+        <div><strong>件名：</strong>{caseTarget.Subject}</div>
+        <div><strong>詳細：</strong>{caseTarget.Description}</div>
+        <div><strong>優先度：</strong>{caseTarget.Priority}</div>
+        <div><strong>メールCC：</strong>{caseTarget.EmailCC__c}</div>
+        <div><strong>解決期限：</strong>{caseTarget.ResolveLimit__c}</div>
+        <div><strong>ファイル：</strong>{caseTarget.AttachmentId__c}</div>
+        <div>
+            <lightning-button class="communityBtn slds-button custombtn" type="submit" name="submit"
+                onclick={handleBack} label="一覧へ"></lightning-button>
+        </div>
+        <!-- <template if:true={caseTarget}>
+            <div><strong>確認＞＞★完了★</strong></div>
+            <div><strong>ID：</strong>{caseTarget.Id}</div>
+            <div><strong>件名：</strong>{caseTarget.Subject}</div>
+            <div><strong>詳細：</strong>{caseTarget.Description}</div>
+            <div><strong>優先度：</strong>{caseTarget.Priority}</div>
+            <div><strong>メールCC：</strong>{caseTarget.EmailCC__c}</div>
+            <div><strong>解決期限：</strong>{caseTarget.ResolveLimit__c}</div>
+            <div><strong>ファイル：</strong>{caseTarget.AttachmentId__c}</div>
+            <div>
+                <lightning-button class="communityBtn slds-button custombtn" type="submit" name="submit"
+                    onclick={handleBack} label="一覧へ"></lightning-button>
+            </div>
+        </template>
+
+        <template if:false={caseTarget}>
+            <p>データを読み込んでいます...</p>
+        </template> -->
+    </template>
+</template>

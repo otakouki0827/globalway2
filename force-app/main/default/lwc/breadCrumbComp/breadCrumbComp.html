@@ -1,0 +1,11 @@
+<template>
+    <nav class="slds-breadcrumb slds-list_horizontal">
+        <ul>
+            <template for:each={breadcrumbs} for:item="crumb">
+                <li key={crumb.id} class="slds-breadcrumb__item">
+                    <a href={crumb.url}>{crumb.label}</a>
+                </li>
+            </template>
+        </ul>
+    </nav>
+</template>

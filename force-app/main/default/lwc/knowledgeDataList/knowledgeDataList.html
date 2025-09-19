@@ -1,0 +1,19 @@
+<template>
+    <div class="knowlege-select-data-list-container">
+        <ul class="list">
+            <!--お知らせ対象レコード一覧-->
+            <template for:each={records} for:item="record">
+                <li key={record.Id} class="announcement-item">
+                    <div class="announcement-content">
+                        <div class="text-block">
+                            <!--ナレッジのタイトル-->
+                            <p class="message">
+                                {record.Name}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+</template>
