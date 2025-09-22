@@ -1,10 +1,11 @@
 import { LightningElement, wire, track } from 'lwc';
 import CASE_DEFLECTION_CHANNEL from '@salesforce/messageChannel/CaseDeflectionMessageChannel__c';
 import { publish, subscribe, unsubscribe, MessageContext } from 'lightning/messageService';
-import createContentDocumentLink from '@salesforce/apex/ContactSupportCaseFormController.createContentDocumentLink';
-import deleteContentDocument from '@salesforce/apex/ContactSupportCaseFormController.deleteContentDocument';
-import getContactRecords from '@salesforce/apex/ContactSupportCaseFormController.getContactRecords';
-import deleteFileByVersionId from '@salesforce/apex/ContactSupportCaseFormController.deleteFileByVersionId';
+// Apex imports removed - will be added when Apex classes are available
+// import createContentDocumentLink from '@salesforce/apex/ContactSupportCaseFormController.createContentDocumentLink';
+// import deleteContentDocument from '@salesforce/apex/ContactSupportCaseFormController.deleteContentDocument';
+// import getContactRecords from '@salesforce/apex/ContactSupportCaseFormController.getContactRecords';
+// import deleteFileByVersionId from '@salesforce/apex/ContactSupportCaseFormController.deleteFileByVersionId';
 import { NavigationMixin } from 'lightning/navigation';
 
 import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
@@ -193,42 +194,46 @@ export default class CaseFormTest extends NavigationMixin(LightningElement) {
         };
 
         //Apexを呼び出す。
-        createContentDocumentLink({ newCase: newCase, documents: this.documents })
-            .then(result => {
-                this.isComplete = true;
-                console.log(result.message);
-                console.log(result.id);
-                //ケースが作成されたらトーストを表示。
-                // const evt = new ShowToastEvent({
-                //     title: 'ケースが作成されました',
-                //     message: 'ケース「{0}」が作成されました。',
-                //     messageData: [
-                //         {
-                //             url: `/customerportal/s/case/${result.id}`,
-                //             label: `#${result.id}`
-                //         }
-                //     ],
-                //     variant: 'success',
-                //     mode: 'dismissable'
-                // });
-                // this.dispatchEvent(evt);
+        // createContentDocumentLink({ newCase: newCase, documents: this.documents })
+        //     .then(result => {
+        //         this.isComplete = true;
+        //         console.log(result.message);
+        //         console.log(result.id);
+        //         //ケースが作成されたらトーストを表示。
+        //         // const evt = new ShowToastEvent({
+        //         //     title: 'ケースが作成されました',
+        //         //     message: 'ケース「{0}」が作成されました。',
+        //         //     messageData: [
+        //         //         {
+        //         //             url: `/customerportal/s/case/${result.id}`,
+        //         //             label: `#${result.id}`
+        //         //         }
+        //         //     ],
+        //         //     variant: 'success',
+        //         //     mode: 'dismissable'
+        //         // });
+        //         // this.dispatchEvent(evt);
 
-                // //サンクスページへの遷移
-                // this[NavigationMixin.Navigate]({
-                //     type: 'comm__namedPage',
-                //     attributes: {
-                //         pageName: 'Home',
-                //     },
-                // }, false);
-            })
-            .catch(error => {
-                let message = 'エラーが発生しました';
-                console.log(message);
-                if (error?.body?.message) {
-                    message = error.body.message;
-                }
-                console.error(message);
-            });
+        //         // //サンクスページへの遷移
+        //         // this[NavigationMixin.Navigate]({
+        //         //     type: 'comm__namedPage',
+        //         //     attributes: {
+        //         //         pageName: 'Home',
+        //         //     },
+        //         // }, false);
+        //     })
+        //     .catch(error => {
+        //         let message = 'エラーが発生しました';
+        //         console.log(message);
+        //         if (error?.body?.message) {
+        //             message = error.body.message;
+        //         }
+        //         console.error(message);
+        //     });
+        
+        // 一時的にコンソールに出力
+        console.log('Case data:', newCase);
+        alert('ケースデータがコンソールに出力されました。');
     }
 
 
@@ -238,13 +243,21 @@ export default class CaseFormTest extends NavigationMixin(LightningElement) {
     handleRemoveFile(event) {
         const index = parseInt(event.target.dataset.index, 10);
         const removedFile = this.documents[index];
-        deleteFileByVersionId({ contentVersionId: removedFile })
-            .then(() => {
-                this.documents = this.documents.filter(id => id !== removedFile);
-                this.filenames = this.filenames.filter((_, i) => i !== index);
-            }).catch(error => {
-                console.error('ファイル削除エラー:', error.body.message);
-            });
+        
+        // 一時的にローカルでのみ削除
+        this.documents = this.documents.filter(id => id !== removedFile);
+        this.filenames = this.filenames.filter((_, i) => i !== index);
+        
+        console.log('File removed:', removedFile);
+        
+        // Apex呼び出しは一時的にコメントアウト
+        // deleteFileByVersionId({ contentVersionId: removedFile })
+        //     .then(() => {
+        //         this.documents = this.documents.filter(id => id !== removedFile);
+        //         this.filenames = this.filenames.filter((_, i) => i !== index);
+        //     }).catch(error => {
+        //         console.error('ファイル削除エラー:', error.body.message);
+        //     });
     }
 
 

@@ -1,3 +1,52 @@
+
+/* 検索結果システム風ヘッダーのスタイル */
+.header-section {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.menu-item {
+    padding: 8px 16px;
+    color: #495057;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu-item:hover {
+    color: #007bff;
+    background-color: #e9ecef;
+    border-radius: 4px;
+}
+
+.menu-divider {
+    color: #6c757d;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+/* 既存のスタイル */
 .right {
     display: flex;
     flex-wrap: wrap;
