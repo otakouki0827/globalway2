@@ -1,7 +1,7 @@
 import { LightningElement, wire, track } from 'lwc';
 import CASE_DEFLECTION_CHANNEL from '@salesforce/messageChannel/CaseDeflectionMessageChannel__c';
 import { publish, subscribe, unsubscribe, MessageContext } from 'lightning/messageService';
-// Apex imports removed - will be added when Apex classes are available
+// Apex imports commented out - will be added when Apex classes are available
 // import createContentDocumentLink from '@salesforce/apex/ContactSupportCaseFormController.createContentDocumentLink';
 // import deleteContentDocument from '@salesforce/apex/ContactSupportCaseFormController.deleteContentDocument';
 // import getContactRecords from '@salesforce/apex/ContactSupportCaseFormController.getContactRecords';
@@ -47,35 +47,35 @@ export default class CaseFormTest extends NavigationMixin(LightningElement) {
     */
     //要素がドキュメントに挿入されるとき
     connectedCallback() {
-        if (this.createFlag) {
-            console.log('getContactRecords');
-            // Apex呼び出し
-            getContactRecords({})
-                .then(result => {
-                    console.log('Apex呼び出し成功:', result);
-                    this.contactData = result;
-                    this.selectList = []; //初期化
-                    for (let i = 0; i < this.contactData.length; i++) {
-                        this.selectList.push({ label: this.contactData[i].Name + '(' + this.contactData[i].Email + ')', value: this.contactData[i].Id })
-                    }
-                    console.log('selectList', this.selectList);
-                })
-                .catch(error => {
-                    console.error('Apex呼び出し失敗:', error);
-                });
-        }
+        // if (this.createFlag) {
+        //     console.log('getContactRecords');
+        //     // Apex呼び出し
+        //     getContactRecords({})
+        //         .then(result => {
+        //             console.log('Apex呼び出し成功:', result);
+        //             this.contactData = result;
+        //             this.selectList = []; //初期化
+        //             for (let i = 0; i < this.contactData.length; i++) {
+        //                 this.selectList.push({ label: this.contactData[i].Name + '(' + this.contactData[i].Email + ')', value: this.contactData[i].Id })
+        //             }
+        //             console.log('selectList', this.selectList);
+        //         })
+        //         .catch(error => {
+        //             console.error('Apex呼び出し失敗:', error);
+        //         });
+        // }
         console.log('connectedCallback');
-        if (this.documents.length > 0) {
-            console.log('handleBeforeUnload');
-            // Apex呼び出し
-            deleteContentDocument({ documents: this.documents })
-                .then(result => {
-                    console.log('Apex呼び出し成功:', result);
-                })
-                .catch(error => {
-                    console.error('Apex呼び出し失敗:', error);
-                });
-        }
+        // if (this.documents.length > 0) {
+        //     console.log('handleBeforeUnload');
+        //     // Apex呼び出し
+        //     deleteContentDocument({ documents: this.documents })
+        //         .then(result => {
+        //             console.log('Apex呼び出し成功:', result);
+        //         })
+        //         .catch(error => {
+        //             console.error('Apex呼び出し失敗:', error);
+        //         });
+        // }
     }
 
     //要素が削除されたとき

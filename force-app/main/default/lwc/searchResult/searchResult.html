@@ -1,27 +1,74 @@
-<template>
-    <!-- 検索結果システム風のヘッダー -->
-    <div class="header-section">
-        <div class="header-title">検索結果</div>
-        <div class="header-menu">
-            <div class="menu-item">問い合わせ</div>
-            <div class="menu-divider">|</div>
-            <div class="menu-item">マニュアル</div>
-            <div class="menu-divider">|</div>
-            <div class="menu-item">リリースノート</div>
-            <div class="menu-divider">|</div>
-            <div class="menu-item">お知らせ</div>
-        </div>
-    </div>
+<!-- ========================================
+     Lightning Web Component HTMLテンプレート
+     ======================================== -->
 
-    <lightning-card title="グローバル検索結果" icon-name="custom:custom68">
-        <div class="right slds-m-around_medium">
+<template>
+    <!-- ========================================
+         ナレッジ記事一覧画面
+         ======================================== -->
+    
+    <!-- メインコンテナ -->
+    <div class="knowledge-page-container">
+        
+        <!-- ========================================
+             トップナビゲーションバー
+             ======================================== -->
+        <div class="top-navigation">
+            <div class="nav-item">問い合わせ</div>
+            <div class="nav-item">マニュアル</div>
+            <div class="nav-item">リリースノート</div>
+            <div class="nav-item">お知らせ</div>
+        </div>
+
+        <!-- ========================================
+             検索・フィルターエリア
+             ======================================== -->
+        <div class="search-filter-area">
+            <div class="item-count">
+                全{totalCount}件 1-{displayCount}件表示
+            </div>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <!-- ========================================
+             ナレッジ記事グリッド
+             ======================================== -->
+        <div class="knowledge-grid">
+            <!-- ナレッジ記事カードのループ表示 -->
             <template for:each={data} for:item="item">
-                <div class="line" key={item.Id}>
-                    <a onclick={tileClick}>
-                        <div class="title">{item.Title}</div>
-                    </a>
+                <div class="knowledge-card" key={item.Id} data-item-id={item.Id} onclick={tileClick}>
+                    <!-- カードヘッダー -->
+                    <div class="card-header">
+                        <div class="type-label type-{item.Type}">{item.Type}</div>
+                        <div class="favorite-icon">
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- カードタイトル -->
+                    <div class="card-title">
+                        {item.Title}
+                    </div>
+                    
+                    <!-- カードタグ -->
+                    <div class="card-tags">
+                        <template for:each={item.Tags} for:item="tag">
+                            <span class="tag" key={tag}>{tag}</span>
+                        </template>
+                    </div>
                 </div>
             </template>
         </div>
-    </lightning-card>
+
+        <!-- ========================================
+             右側ナビゲーションボタン
+             ======================================== -->
+        <div class="right-navigation">
+            <button class="nav-button">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
 </template>

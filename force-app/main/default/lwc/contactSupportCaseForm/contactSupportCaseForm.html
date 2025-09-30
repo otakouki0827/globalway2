@@ -28,22 +28,138 @@
                     <p><span class="red">※</span><span>が付いている項目は入力必須項目です。</span></p>
                 </div>
                 <!-- 各項目 -->
-                <!-- お問い合わせ件名 -->
+                <!-- 種別選択 -->
                 <div class="item">
-                    <div class="custom-label">お問い合わせ件名<span class="red">※</span></div>
+                    <div class="custom-label">種別<span class="red">※</span></div>
                     <div class="blank"></div>
-                    <lightning-input placeholder="お問い合わせ件名を入力してください。" name="Subject" value={subject}
-                        onchange={handleSubjectInputChange} onkeydown={handleKeyDown} variant="label-hidden"
-                        maxlength={subjectMaxLen} required></lightning-input>
+                    <lightning-combobox options={categoryOptions} name="Category" value={category}
+                        onchange={handleCategoryChange} variant="label-hidden" required></lightning-combobox>
                 </div>
-                <!-- お問い合わせ詳細 -->
-                <div class="item">
-                    <div class="custom-label">お問い合わせ詳細<span class="red">※</span></div>
-                    <div class="blank"></div>
-                    <lightning-textarea class="custom-textarea" placeholder="お問い合わせの詳細を入力してください。" name="Description"
-                        value={description} onchange={handleDescriptionInputChange} onkeydown={handleKeyDown}
-                        variant="label-hidden" maxlength={descriptionMaxLen} required></lightning-textarea>
-                </div>
+
+                <!-- 不具合起票の項目 -->
+                <template if:true={isBugCategory}>
+                    <!-- 起票者 -->
+                    <div class="item">
+                        <div class="custom-label">起票者<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-input placeholder="氏名・部署を入力してください。" name="ReporterName" value={reporterName}
+                            onchange={handleReporterNameChange} variant="label-hidden" required></lightning-input>
+                    </div>
+                    <!-- 製品/エラー発生箇所 -->
+                    <div class="item">
+                        <div class="custom-label">製品/エラー発生箇所<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-input placeholder="例：Combosit / 所属マスタ" name="ProductErrorLocation" value={productErrorLocation}
+                            onchange={handleProductErrorLocationChange} variant="label-hidden" required></lightning-input>
+                    </div>
+                    <!-- 不具合概要 -->
+                    <div class="item">
+                        <div class="custom-label">不具合概要<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="一文で要約" name="BugOverview"
+                            value={bugOverview} onchange={handleBugOverviewChange}
+                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                    <!-- 詳細内容 -->
+                    <div class="item">
+                        <div class="custom-label">詳細内容<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="正常時との違いや、発生した具体的状況" name="DetailedContent"
+                            value={detailedContent} onchange={handleDetailedContentChange}
+                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                    <!-- 発生環境 -->
+                    <div class="item">
+                        <div class="custom-label">発生環境<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-input placeholder="例：本番・検証" name="Environment" value={environment}
+                            onchange={handleEnvironmentChange} variant="label-hidden" required></lightning-input>
+                    </div>
+                    <!-- 発生頻度 -->
+                    <div class="item">
+                        <div class="custom-label">発生頻度<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-combobox options={occurrenceFrequencyOptions} name="OccurrenceFrequency" value={occurrenceFrequency}
+                            onchange={handleOccurrenceFrequencyChange} variant="label-hidden" required></lightning-combobox>
+                    </div>
+                    <!-- 再現手順 -->
+                    <div class="item">
+                        <div class="custom-label">再現手順<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="1.&#10;2.&#10;3." name="ReproductionSteps"
+                            value={reproductionSteps} onchange={handleReproductionStepsChange}
+                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                    <!-- 期待される動作 -->
+                    <div class="item">
+                        <div class="custom-label">期待される動作<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="本来の正しい動作" name="ExpectedAction"
+                            value={expectedAction} onchange={handleExpectedActionChange}
+                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                    <!-- 現在の状況 -->
+                    <div class="item">
+                        <div class="custom-label">現在の状況<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="例：暫定対応でエラーは回避して登録できたが、理想の動きではない" name="CurrentSituation"
+                            value={currentSituation} onchange={handleCurrentSituationChange}
+                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                </template>
+
+                <!-- 要望の項目 -->
+                <template if:true={isRequestCategory}>
+                    <!-- 件名 -->
+                    <div class="item">
+                        <div class="custom-label">件名<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-input placeholder="件名を入力してください。" name="Subject" value={subject}
+                            onchange={handleSubjectInputChange} variant="label-hidden"
+                            maxlength={subjectMaxLen} required></lightning-input>
+                    </div>
+                    <!-- 詳細 -->
+                    <div class="item">
+                        <div class="custom-label">詳細<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="詳細を入力してください。" name="Description"
+                            value={description} onchange={handleDescriptionInputChange}                            variant="label-hidden" maxlength={descriptionMaxLen} required></lightning-textarea>
+                    </div>
+                    <!-- 改善後のイメージ/期待効果 -->
+                    <div class="item">
+                        <div class="custom-label">改善後のイメージ/期待効果<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="改善後のイメージや期待効果を入力してください。" name="ExpectedEffect"
+                            value={expectedEffect} onchange={handleExpectedEffectChange}                            variant="label-hidden" required></lightning-textarea>
+                    </div>
+                    <!-- 導入希望時期 -->
+                    <div class="item">
+                        <div class="custom-label">導入希望時期</div>
+                        <div class="blank"></div>
+                        <lightning-combobox options={implementationPeriodOptions} 
+                            name="ImplementationPeriod" value={implementationPeriod}
+                            onchange={handleImplementationPeriodChange} variant="label-hidden"></lightning-combobox>
+                    </div>
+                </template>
+
+                <!-- 質問の項目 -->
+                <template if:true={isQuestionCategory}>
+                    <!-- 件名 -->
+                    <div class="item">
+                        <div class="custom-label">件名<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-input placeholder="件名を入力してください。" name="Subject" value={subject}
+                            onchange={handleSubjectInputChange} variant="label-hidden"
+                            maxlength={subjectMaxLen} required></lightning-input>
+                    </div>
+                    <!-- 詳細 -->
+                    <div class="item">
+                        <div class="custom-label">詳細<span class="red">※</span></div>
+                        <div class="blank"></div>
+                        <lightning-textarea class="custom-textarea" placeholder="詳細を入力してください。" name="Description"
+                            value={description} onchange={handleDescriptionInputChange}                            variant="label-hidden" maxlength={descriptionMaxLen} required></lightning-textarea>
+                    </div>
+                </template>
                 <!-- 優先度 -->
                 <div lwc:if={priorityOptions.data} class="item priority-container">
                     <div class="custom-label">優先度<span class="red">※</span><lightning-helptext></lightning-helptext>
@@ -138,16 +254,92 @@
                     <p>以下のお問い合わせ内容で確定しますか？</p>
                 </div>
                 <!-- 各項目 -->
-                <!-- お問い合わせ件名 -->
+                <!-- 種別 -->
                 <div class="container">
-                    <div class="label">お問い合わせ件名</div>
-                    <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    <div class="label">種別</div>
+                    <div class="text">
+                        <template if:true={isBugCategory}>不具合起票</template>
+                        <template if:true={isRequestCategory}>要望</template>
+                        <template if:true={isQuestionCategory}>質問</template>
+                    </div>
                 </div>
-                <!-- お問い合わせ詳細 -->
-                <div class="container">
-                    <div class="label">お問い合わせ詳細</div>
-                    <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
-                </div>
+
+                <!-- 不具合起票の確認項目 -->
+                <template if:true={isBugCategory}>
+                    <div class="container">
+                        <div class="label">起票者</div>
+                        <div class="text"><lightning-formatted-text value={reporterName}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">製品/エラー発生箇所</div>
+                        <div class="text"><lightning-formatted-text value={productErrorLocation}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">不具合概要</div>
+                        <div class="text"><lightning-formatted-text value={bugOverview}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細内容</div>
+                        <div class="text"><lightning-formatted-text value={detailedContent}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">発生環境</div>
+                        <div class="text"><lightning-formatted-text value={environment}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">発生頻度</div>
+                        <div class="text"><lightning-formatted-text value={occurrenceFrequency}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">再現手順</div>
+                        <div class="text"><lightning-formatted-text value={reproductionSteps}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">期待される動作</div>
+                        <div class="text"><lightning-formatted-text value={expectedAction}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">現在の状況</div>
+                        <div class="text"><lightning-formatted-text value={currentSituation}></lightning-formatted-text></div>
+                    </div>
+                </template>
+
+                <!-- 要望の確認項目 -->
+                <template if:true={isRequestCategory}>
+                    <div class="container">
+                        <div class="label">件名</div>
+                        <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細</div>
+                        <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">改善後のイメージ/期待効果</div>
+                        <div class="text"><lightning-formatted-text value={expectedEffect}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">導入希望時期</div>
+                        <div class="text">
+                            <template if:true={implementationPeriod}>
+                                <lightning-formatted-text value={implementationPeriod}></lightning-formatted-text>
+                            </template>
+                            <template if:false={implementationPeriod}>-なし-</template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- 質問の確認項目 -->
+                <template if:true={isQuestionCategory}>
+                    <div class="container">
+                        <div class="label">件名</div>
+                        <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細</div>
+                        <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
+                    </div>
+                </template>
                 <!-- 優先度 -->
                 <div class="container">
                     <div class="label">優先度</div>
@@ -159,6 +351,7 @@
                     <div class="text"><lightning-formatted-text
                             value={resolutionFormattedDate}></lightning-formatted-text></div>
                 </div>
+
                 <!-- 添付ファイル -->
                 <div class="container">
                     <div class="label">添付ファイル</div>
@@ -195,12 +388,13 @@
 
         </div>
     </div>
-    <!-- 完了ステップ -->
-    <div lwc:elseif={isCompletedStep}>
-        <div class="complete-case-form-container">
-            <template if:true={isLoading}>
-                <lightning-spinner alternative-text="読み込み中" size="medium"></lightning-spinner>
-            </template>
+            <!-- 完了ステップ -->
+            <div lwc:elseif={isCompletedStep}>
+                <div class="complete-case-form-container">
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="読み込み中" size="medium"></lightning-spinner>
+                    </template>
+                    
             <!-- パスCSS -->
             <div class="phase">
                 <div class="phase-container">
@@ -235,16 +429,92 @@
                     <div class="label">お問い合わせ番号</div>
                     <div class="text"><lightning-formatted-text value={caseNumber}></lightning-formatted-text></div>
                 </div>
-                <!-- お問い合わせ件名 -->
+                <!-- 種別 -->
                 <div class="container">
-                    <div class="label">お問い合わせ件名</div>
-                    <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    <div class="label">種別</div>
+                    <div class="text">
+                        <template if:true={isBugCategory}>不具合起票</template>
+                        <template if:true={isRequestCategory}>要望</template>
+                        <template if:true={isQuestionCategory}>質問</template>
+                    </div>
                 </div>
-                <!-- お問い合わせ詳細 -->
-                <div class="container">
-                    <div class="label">お問い合わせ詳細</div>
-                    <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
-                </div>
+
+                <!-- 不具合起票の完了項目 -->
+                <template if:true={isBugCategory}>
+                    <div class="container">
+                        <div class="label">起票者</div>
+                        <div class="text"><lightning-formatted-text value={reporterName}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">製品/エラー発生箇所</div>
+                        <div class="text"><lightning-formatted-text value={productErrorLocation}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">不具合概要</div>
+                        <div class="text"><lightning-formatted-text value={bugOverview}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細内容</div>
+                        <div class="text"><lightning-formatted-text value={detailedContent}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">発生環境</div>
+                        <div class="text"><lightning-formatted-text value={environment}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">発生頻度</div>
+                        <div class="text"><lightning-formatted-text value={occurrenceFrequency}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">再現手順</div>
+                        <div class="text"><lightning-formatted-text value={reproductionSteps}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">期待される動作</div>
+                        <div class="text"><lightning-formatted-text value={expectedAction}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">現在の状況</div>
+                        <div class="text"><lightning-formatted-text value={currentSituation}></lightning-formatted-text></div>
+                    </div>
+                </template>
+
+                <!-- 要望の完了項目 -->
+                <template if:true={isRequestCategory}>
+                    <div class="container">
+                        <div class="label">件名</div>
+                        <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細</div>
+                        <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">改善後のイメージ/期待効果</div>
+                        <div class="text"><lightning-formatted-text value={expectedEffect}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">導入希望時期</div>
+                        <div class="text">
+                            <template if:true={implementationPeriod}>
+                                <lightning-formatted-text value={implementationPeriod}></lightning-formatted-text>
+                            </template>
+                            <template if:false={implementationPeriod}>-なし-</template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- 質問の完了項目 -->
+                <template if:true={isQuestionCategory}>
+                    <div class="container">
+                        <div class="label">件名</div>
+                        <div class="text"><lightning-formatted-text value={subject}></lightning-formatted-text></div>
+                    </div>
+                    <div class="container">
+                        <div class="label">詳細</div>
+                        <div class="text"><lightning-formatted-text value={description}></lightning-formatted-text></div>
+                    </div>
+                </template>
                 <!-- 優先度 -->
                 <div class="container">
                     <div class="label">優先度</div>
@@ -256,6 +526,7 @@
                     <div class="text"><lightning-formatted-text
                             value={resolutionFormattedDate}></lightning-formatted-text></div>
                 </div>
+
                 <!-- 添付ファイル -->
                 <div class="container">
                     <div class="label">添付ファイル</div>
@@ -266,6 +537,8 @@
                     </ul>
                 </div>
             </div>
+            
+            
             <!-- 登録ボタン -->
             <div class="action-block">
                 <div class="item">

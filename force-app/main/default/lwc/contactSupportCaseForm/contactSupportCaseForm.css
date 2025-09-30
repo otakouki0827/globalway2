@@ -333,8 +333,108 @@
 
 }
 
-.complete-case-form-container .action-block .list-button .container .text {
+        .complete-case-form-container .action-block .list-button .container .text {
 
-    color: white;
-    text-align: center;
-}
+            color: white;
+            text-align: center;
+        }
+
+        /* ケース詳細表示のスタイル */
+        .case-detail-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .detail-button {
+            background-color: #0070d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .detail-button:hover {
+            background-color: #005fb2;
+        }
+
+        .detail-button i {
+            margin-right: 8px;
+        }
+
+        .case-detail-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .case-detail-container h3 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .detail-content {
+            display: grid;
+            gap: 20px;
+        }
+
+        .detail-section {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0070d2;
+        }
+
+        .detail-section h4 {
+            color: #0070d2;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .detail-item {
+            margin-bottom: 8px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .detail-value {
+            color: #666;
+        }
+
+        .detail-value.reproduction-steps {
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+
+
+        /* 再現手順のテキストエリア */
+        .reproduction-steps-textarea {
+            --sds-c-textarea-sizing-min-height: 200px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        /* 再現手順の表示 */
+        .reproduction-steps-display pre {
+            margin: 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
